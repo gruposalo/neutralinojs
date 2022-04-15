@@ -8,12 +8,20 @@
 #include "helpers.h"
 #include "api/filesystem/filesystem.h"
 
-#define STORAGE_DIR "/.storage"
+// #define STORAGE_DIR "/.storage"
 #define STORAGE_EXT ".neustorage"
 #define STORAGE_KEY_REGEX "^[a-zA-Z-_0-9]{1,50}$"
 
 using namespace std;
 using json = nlohmann::json;
+
+pathStorage = fs::readFile('.neutralino.config.json');
+
+if(pathStorage.hasError) {
+    #define STORAGE_DIR ".storage"
+}else{
+    #define STORAGE_DIR output['storageRoot']
+}
 
 namespace storage {
 
